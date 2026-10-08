@@ -4,6 +4,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\AuthController;
 use App\Http\Controllers\ProductController;
 use App\Http\Controllers\UserController;
+use App\Http\Controllers\CustomerController;
 
 // Login Routes 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -33,6 +34,10 @@ Route::middleware(['auth'])->group(function () {
 // Users Management Routes (Admin only)
 Route::resource('users', UserController::class)->middleware('auth');
 
+
+
+// Customer Management Routes
+Route::resource('customers', CustomerController::class)->middleware('auth');
 
 
 Route::get('/', function () {
