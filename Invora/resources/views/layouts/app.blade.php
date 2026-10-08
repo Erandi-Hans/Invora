@@ -12,12 +12,12 @@
 <body class="bg-slate-50 font-sans antialiased text-slate-800">
     <div class="flex h-screen overflow-hidden">
 
-        <!-- Sidebar Section -->
-        <aside class="w-64 bg-indigo-900 text-slate-100 flex flex-col shadow-xl z-20">
+        <!-- Sidebar Section with Sky Blue Theme -->
+        <aside class="w-64 bg-sky-100 text-slate-100 flex flex-col shadow-xl z-25">
             <!-- App Logo / Brand Header -->
-            <div class="h-16 flex items-center justify-center px-6 bg-indigo-950 border-b border-indigo-800">
-                <span class="text-xl font-extrabold tracking-wider text-white flex items-center gap-2">
-                    <svg class="w-6 h-6 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <div class="h-16 flex items-center justify-center px-6 bg-sky-700 border-b border-sky-500/30">
+                <span class="text-xl font-extrabold tracking-wider text-black flex items-center gap-2">
+                    <svg class="w-6 h-6 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4" />
                     </svg>
                     Invora POS
@@ -26,39 +26,37 @@
 
             <!-- Navigation Menu with Main and Sub-menu style layout -->
             <nav class="flex-1 px-4 py-6 space-y-1.5 overflow-y-auto">
-                <p class="px-4 text-xs font-semibold text-indigo-400 uppercase tracking-wider mb-2">Main Menu</p>
 
                 <!-- Dashboard Link -->
-                <a href="/dashboard" class="flex items-center gap-3 px-4 py-3 rounded-xl transition duration-150 font-medium text-sm hover:bg-indigo-800 hover:text-white {{ request()->is('dashboard') ? 'bg-indigo-800 text-white shadow-sm' : 'text-indigo-200' }}">
-                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="/dashboard" class="flex items-center gap-3 px-4 py-3 rounded-xl transition duration-150 font-medium text-sm hover:bg-sky-500 hover:text-black {{ request()->is('dashboard') ? 'bg-sky-500 text-black shadow-sm' : 'text-black' }}">
+                    <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2V6zM14 6a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2V6zM4 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2H6a2 2 0 01-2-2v-2zM14 16a2 2 0 012-2h2a2 2 0 012 2v2a2 2 0 01-2 2h-2a2 2 0 01-2-2v-2z" />
                     </svg>
                     Dashboard
                 </a>
 
-                <p class="px-4 text-xs font-semibold text-indigo-400 uppercase tracking-wider mt-6 mb-2">Inventory & Sales</p>
 
                 <!-- Products / Inventory Link -->
-                <a href="{{ route('products.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition duration-150 font-medium text-sm hover:bg-indigo-800 hover:text-white {{ request()->routeIs('products.*') ? 'bg-indigo-800 text-white shadow-sm' : 'text-indigo-200' }}">
-                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="{{ route('products.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition duration-150 font-medium text-sm hover:bg-sky-500 hover:text-black {{ request()->routeIs('products.*') ? 'bg-sky-500 text-black shadow-sm' : 'text-black' }}">
+                    <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                     </svg>
                     Products (Inventory)
                 </a>
 
-                <p class="px-4 text-xs font-semibold text-indigo-400 uppercase tracking-wider mt-6 mb-2">Management</p>
+
 
                 <!-- Users Management Link -->
-                <a href="{{ route('users.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition duration-150 font-medium text-sm hover:bg-indigo-800 hover:text-white {{ request()->routeIs('users.*') ? 'bg-indigo-800 text-white shadow-sm' : 'text-indigo-200' }}">
-                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="{{ route('users.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition duration-150 font-medium text-sm hover:bg-sky-500 hover:text-black {{ request()->routeIs('users.*') ? 'bg-sky-500 text-black shadow-sm' : 'text-black' }}">
+                    <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4.354a4 4 0 110 5.292M15 21H3v-1a6 6 0 0112 0v1zm0 0h6v-1a6 6 0 00-9-5.197M13 7a4 4 0 11-8 0 4 4 0 018 0z" />
                     </svg>
                     Users Management
                 </a>
 
                 <!-- Customers Link -->
-                <a href="{{ route('customers.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition duration-150 font-medium text-sm hover:bg-indigo-800 hover:text-white {{ request()->routeIs('customers.*') ? 'bg-indigo-800 text-white shadow-sm' : 'text-indigo-200' }}">
-                    <svg class="w-5 h-5 text-indigo-400" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <a href="{{ route('customers.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition duration-150 font-medium text-sm hover:bg-sky-500 hover:text-black {{ request()->routeIs('customers.*') ? 'bg-sky-500 text-black shadow-sm' : 'text-black' }}">
+                    <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z" />
                     </svg>
                     Customers
@@ -66,7 +64,7 @@
             </nav>
 
             <!-- Logout Section at Bottom -->
-            <div class="p-4 bg-indigo-950 border-t border-indigo-800">
+            <div class="p-4 bg-sky-700 border-t border-sky-500/30">
                 <form action="/logout" method="POST">
                     @csrf
                     <button type="submit" class="w-full flex items-center justify-center gap-2 bg-red-600 hover:bg-red-700 text-white py-2.5 px-4 rounded-xl text-sm font-semibold transition duration-150 shadow-sm">
@@ -87,7 +85,7 @@
 
                 <!-- User Profile Indicator -->
                 <div class="flex items-center gap-3">
-                    <span class="text-sm font-medium text-slate-600 bg-slate-100 px-3 py-1.5 rounded-full">Welcome, Admin</span>
+                    <span class="text-sm font-medium text-slate-600 bg-sky-50 text-sky-700 px-3 py-1.5 rounded-full border border-sky-100">Welcome, Admin</span>
                 </div>
             </header>
 
