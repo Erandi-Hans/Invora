@@ -1,14 +1,16 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Invora - POS & Inventory System</title>
     <script src="https://cdn.tailwindcss.com"></script>
 </head>
+
 <body class="bg-gray-100 font-sans antialiased">
     <div class="flex h-screen overflow-hidden">
-        
+
         <!-- Sidebar -->
         <div class="w-64 bg-indigo-800 text-white flex flex-col">
             <div class="p-5 text-2xl font-bold tracking-wider text-center border-b border-indigo-700">
@@ -17,7 +19,11 @@
             <nav class="flex-1 p-4 space-y-2">
                 <a href="/dashboard" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Dashboard</a>
                 <a href="{{ route('products.index') }}" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Products (Inventory)</a>
-                <!-- ඉදිරියට Customers සහ Invoices මෙතනට එකතු කරමු -->
+                <nav class="flex-1 p-4 space-y-2">
+                    <a href="/dashboard" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Dashboard</a>
+                    <a href="{{ route('products.index') }}" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Products (Inventory)</a>
+                    <a href="{{ route('users.index') }}" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Users Management</a>
+                </nav>
             </nav>
             <div class="p-4 border-t border-indigo-700">
                 <form action="/logout" method="POST">
@@ -43,4 +49,5 @@
 
     </div>
 </body>
+
 </html>
