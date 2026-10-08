@@ -16,16 +16,14 @@
             <div class="p-5 text-2xl font-bold tracking-wider text-center border-b border-indigo-700">
                 Invora POS
             </div>
+
             <nav class="flex-1 p-4 space-y-2">
                 <a href="/dashboard" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Dashboard</a>
                 <a href="{{ route('products.index') }}" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Products (Inventory)</a>
-                <nav class="flex-1 p-4 space-y-2">
-                    <a href="/dashboard" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Dashboard</a>
-                    <a href="{{ route('products.index') }}" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Products (Inventory)</a>
-                    <a href="{{ route('users.index') }}" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Users Management</a>
-                    <a href="{{ route('customers.index') }}" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Customers</a>
-                </nav>
+                <a href="{{ route('users.index') }}" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Users Management</a>
+                <a href="{{ route('customers.index') }}" class="block px-4 py-2.5 rounded transition hover:bg-indigo-700 font-medium">Customers</a>
             </nav>
+
             <div class="p-4 border-t border-indigo-700">
                 <form action="/logout" method="POST">
                     @csrf
