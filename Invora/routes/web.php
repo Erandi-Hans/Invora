@@ -7,7 +7,7 @@ use App\Http\Controllers\UserController;
 use App\Http\Controllers\CustomerController;
 use App\Models\Product;
 use App\Models\Customer;
-
+use App\Http\Controllers\InvoiceController;
 
 // Login Routes 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
@@ -42,6 +42,7 @@ Route::get('/dashboard', function () {
 
 Route::resource('users', UserController::class)->middleware(['auth']);
 Route::resource('customers', CustomerController::class)->middleware(['auth']);
+Route::resource('invoices', InvoiceController::class)->middleware(['auth']);
 
 // Welcome / Root Route
 Route::get('/', function () {
