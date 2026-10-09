@@ -11,35 +11,25 @@ Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
 Route::post('/logout', [AuthController::class, 'logout']);
 
-// The dashboard visible after logging into the system (currently in a standard view)
+// Authenticated Routes Group
 Route::middleware(['auth'])->group(function () {
-    Route::get('/dashboard', function () {
-        return view('dashboard');
-    });
-});
 
-
-
-Route::middleware(['auth'])->group(function () {
+    // Dashboard Route
     Route::get('/dashboard', function () {
         return view('dashboard');
     });
 
-    // Product Resource Routes
+    // Product Resource Routes (Includes Index, Create, Store, Show, Edit, Update, Destroy)
     Route::resource('products', ProductController::class);
+
+    // Users Management Routes (Admin only)
+    Route::resource('users', UserController::class);
+
+    // Customer Management Routes
+    Route::resource('customers', CustomerController::class);
 });
 
-
-
-// Users Management Routes (Admin only)
-Route::resource('users', UserController::class)->middleware('auth');
-
-
-
-// Customer Management Routes
-Route::resource('customers', CustomerController::class)->middleware('auth');
-
-
+// Welcome / Root Route
 Route::get('/', function () {
     return view('welcome');
 });
