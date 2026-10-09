@@ -8,6 +8,7 @@ use App\Http\Controllers\CustomerController;
 use App\Models\Product;
 use App\Models\Customer;
 
+
 // Login Routes 
 Route::get('/login', [AuthController::class, 'showLogin'])->name('login');
 Route::post('/login', [AuthController::class, 'login']);
@@ -36,6 +37,10 @@ Route::get('/dashboard', function () {
     $totalCustomers = Customer::count();
     return view('dashboard', compact('totalProducts', 'totalCustomers'));
 })->middleware(['auth']);
+
+
+
+Route::resource('users', UserController::class)->middleware(['auth']);
 
 // Welcome / Root Route
 Route::get('/', function () {

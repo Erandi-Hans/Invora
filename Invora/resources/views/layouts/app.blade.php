@@ -117,10 +117,10 @@
         </aside>
 
         <!-- Right Main Container -->
-        <div class="flex-1 flex flex-col h-screen overflow-hidden">
+        <div class="flex-1 flex flex-col h-screen overflow-hidden bg-slate-50 relative">
 
-            <!-- Sticky Full-Width Header Section spanning across the top -->
-            <header class="bg-sky-50 shadow-sm h-16 flex items-center justify-between px-8 border-b border-sky-200 sticky top-0 z-20 w-full">
+            <!-- Sticky Full-Width Header Section (Top) -->
+            <header class="bg-sky-50 shadow-sm h-16 flex items-center justify-between px-8 border-b border-sky-200 sticky top-0 z-20 w-full flex-shrink-0">
                 <h2 class="text-lg font-bold text-slate-800 tracking-tight">
                     @if(request()->is('dashboard'))
                     Dashboard
@@ -140,17 +140,18 @@
                 </div>
             </header>
 
-            <!-- Scrollable Content Area and Footer -->
-            <div class="flex-1 overflow-y-auto flex flex-col">
-                <main class="p-8 flex-1">
+            <!-- Scrollable Content Area (Added pb-16 so content won't hide behind the fixed footer) -->
+            <div class="flex-1 overflow-y-auto pb-16">
+                <!-- Main Page Content -->
+                <main class="p-8">
                     @yield('content')
                 </main>
-
-                <!-- Footer Section -->
-                <footer class="bg-white border-t border-slate-200 py-4 px-8 text-center text-xs text-slate-500 mt-auto">
-                    &copy; 2026 Invora POS & Inventory System. All rights reserved.
-                </footer>
             </div>
+
+            <!-- Fixed Footer at the very bottom of the screen, never moves down with data -->
+            <footer class="bg-white border-t border-slate-200 py-3 px-8 text-center text-xs text-slate-500 absolute bottom-0 left-0 right-0 z-20">
+                &copy; 2026 Invora POS & Inventory System. All rights reserved.
+            </footer>
         </div>
 
     </div>
