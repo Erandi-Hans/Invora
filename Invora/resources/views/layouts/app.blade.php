@@ -119,22 +119,23 @@
             </div>
         </aside>
 
-        <!-- Main Content Area -->
         <div class="flex-1 flex flex-col overflow-y-auto">
-            <!-- Top Header Navbar -->
-            <header class="bg-white shadow-sm h-16 flex items-center justify-between px-8 border-b border-slate-200 z-10">
+
+            <header class="bg-sky-50 shadow-sm h-16 flex items-center justify-between px-8 border-b border-sky-200 z-10">
                 <h2 class="text-lg font-bold text-slate-800 tracking-tight">Admin Panel</h2>
 
-                <!-- User Profile Indicator -->
                 <div class="flex items-center gap-3">
-                    <span class="text-sm font-medium text-slate-600 bg-sky-50 text-sky-700 px-3 py-1.5 rounded-full border border-sky-100">Welcome, Admin</span>
+                    <span class="text-sm font-semibold text-sky-900 bg-sky-200/60 px-3.5 py-1.5 rounded-full border border-sky-300">Welcome, Admin</span>
                 </div>
             </header>
 
-            <!-- Dynamic Content Yield Section -->
-            <main class="p-8">
+            <main class="p-8 flex-1">
                 @yield('content')
             </main>
+
+            <footer class="bg-white border-t border-slate-200 py-4 px-8 text-center text-xs text-slate-500">
+                &copy; 2026 Invora POS & Inventory System. All rights reserved.
+            </footer>
         </div>
 
     </div>

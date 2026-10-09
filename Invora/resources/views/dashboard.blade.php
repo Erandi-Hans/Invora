@@ -2,69 +2,63 @@
 
 @section('content')
 <div class="space-y-6">
-    
-    <!-- Welcome Banner -->
-    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-6 rounded-xl shadow-lg flex flex-col md:flex-row justify-between items-center gap-4">
-        <div>
-            <h1 class="text-2xl font-bold">Welcome back, Admin! 👋</h1>
-            <p class="text-indigo-100 mt-1">Here is a quick overview of your Invora POS & Inventory System today.</p>
+
+    <div class="bg-gradient-to-r from-sky-400 to-sky-600 rounded-2xl p-8 text-white shadow-lg flex flex-col md:flex-row items-center justify-between">
+        <div class="space-y-2">
+            <h1 class="text-3xl font-extrabold tracking-tight">Welcome back, Admin! 👋</h1>
+            <p class="text-sky-100 text-sm md:text-base">Here is a quick overview of your Invora POS & Inventory System today.</p>
         </div>
-        <div>
-            <a href="{{ route('products.create') }}" class="bg-white text-indigo-600 px-4 py-2 rounded-lg font-semibold shadow hover:bg-indigo-50 transition duration-150 inline-block">+ Add New Product</a>
+        <div class="mt-4 md:mt-0">
+            <a href="{{ route('products.create') ?? '#' }}" class="bg-white text-sky-700 hover:bg-sky-50 px-5 py-2.5 rounded-xl font-bold text-sm shadow-md transition duration-150 flex items-center gap-2">
+                <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 4v16m8-8H4" />
+                </svg>
+                Add New Product
+            </a>
         </div>
     </div>
 
-    <!-- Quick Stats Grid -->
     <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
-        
-        <!-- Total Products Card -->
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between">
+
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-sky-100 flex items-center justify-between hover:shadow-md transition">
             <div>
-                <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Products</p>
-                <h3 class="text-3xl font-extrabold text-gray-900 mt-1">{{\App\Models\Product::count()}}</h3>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Products</p>
+                <h3 class="text-3xl font-black text-slate-800 mt-1">{{ $totalProducts ?? 0 }}</h3>
             </div>
-            <div class="p-3 bg-indigo-50 text-indigo-600 rounded-xl">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M20 7l-8-4-8 4m16 0l-8 4m8-4v10l-8 4m0-10L4 7m8 4v10M4 7v10l8 4"/>
-                </svg>
+            <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center font-bold text-xl">
+                📦
             </div>
         </div>
 
-        <!-- Total Customers Card -->
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-sky-100 flex items-center justify-between hover:shadow-md transition">
             <div>
-                <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">Total Customers</p>
-                <h3 class="text-3xl font-extrabold text-gray-900 mt-1">0</h3>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">Total Customers</p>
+                <h3 class="text-3xl font-black text-slate-800 mt-1">{{ $totalCustomers ?? 0 }}</h3>
             </div>
-            <div class="p-3 bg-green-50 text-green-600 rounded-xl">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 20h5v-2a3 3 0 00-5.356-1.857M17 20H7m10 0v-2c0-.656-.126-1.283-.356-1.857M7 20H2v-2a3 3 0 015.356-1.857M7 20v-2c0-.656.126-1.283.356-1.857m0 0a5.002 5.002 0 019.288 0M15 7a3 3 0 11-6 0 3 3 0 016 0zm6 3a2 2 0 11-4 0 2 2 0 014 0zM7 10a2 2 0 11-4 0 2 2 0 014 0z"/>
-                </svg>
+            <div class="w-12 h-12 rounded-xl bg-sky-100 text-sky-600 flex items-center justify-center font-bold text-xl">
+                👥
             </div>
         </div>
 
-        <!-- System Status Card -->
-        <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100 flex items-center justify-between">
+        <div class="bg-white p-6 rounded-2xl shadow-sm border border-sky-100 flex items-center justify-between hover:shadow-md transition">
             <div>
-                <p class="text-sm font-medium text-gray-500 uppercase tracking-wider">System Status</p>
-                <h3 class="text-base font-bold text-green-600 mt-2 flex items-center gap-2">
-                    <span class="w-2.5 h-2.5 rounded-full bg-green-500 animate-pulse"></span> Active & Running
-                </h3>
+                <p class="text-xs font-bold text-slate-400 uppercase tracking-wider">System Status</p>
+                <div class="flex items-center gap-2 mt-2">
+                    <span class="w-3 h-3 rounded-full bg-emerald-500 animate-pulse"></span>
+                    <span class="text-sm font-bold text-emerald-600">Active & Running</span>
+                </div>
             </div>
-            <div class="p-3 bg-blue-50 text-blue-600 rounded-xl">
-                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z"/>
-                </svg>
+            <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center font-bold text-xl">
+                🛡️
             </div>
         </div>
 
     </div>
 
-    <!-- System Overview Section -->
-    <div class="bg-white p-6 rounded-xl shadow-sm border border-gray-100">
-        <h3 class="text-lg font-bold text-gray-800 mb-2">System Overview</h3>
-        <p class="text-gray-600 text-sm leading-relaxed">
-            Welcome to the Invora POS & Inventory control center. Use the sidebar navigation on the left to manage your product catalog, view inventory counts, and process future customer transactions securely.
+    <div class="bg-white rounded-2xl p-6 shadow-sm border border-sky-100">
+        <h3 class="text-lg font-bold text-slate-800 mb-2">System Overview</h3>
+        <p class="text-slate-600 text-sm leading-relaxed">
+            Welcome to the Invora POS & Inventory control center. Use the sidebar navigation on the left to manage your product catalog, view inventory counts, add system users, manage customer accounts, and process future customer transactions securely.
         </p>
     </div>
 
