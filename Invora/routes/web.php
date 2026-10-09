@@ -41,6 +41,7 @@ Route::get('/dashboard', function () {
 
 
 Route::resource('users', UserController::class)->middleware(['auth']);
+Route::resource('customers', CustomerController::class)->middleware(['auth']);
 
 // Welcome / Root Route
 Route::get('/', function () {
