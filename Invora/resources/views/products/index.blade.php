@@ -3,10 +3,10 @@
 @section('content')
 <div class="space-y-6">
 
-    <!-- Page Header Bar -->
+    <!-- Page Header Bar with Title on Left and Add Button on Right -->
     <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 bg-white p-6 rounded-2xl shadow-sm border border-slate-200">
         <div>
-            <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Product Inventory</h1>
+            <h1 class="text-2xl font-bold text-slate-900 tracking-tight">Inventory Management</h1>
             <p class="text-sm text-slate-600 mt-0.5">Manage your stock, prices, and product catalogs efficiently.</p>
         </div>
         <div>
@@ -18,6 +18,8 @@
             </a>
         </div>
     </div>
+
+
 
     <!-- Success Alert Notification -->
     @if(session('success'))

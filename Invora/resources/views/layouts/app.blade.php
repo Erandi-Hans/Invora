@@ -10,10 +10,11 @@
 </head>
 
 <body class="bg-slate-50 font-sans antialiased text-slate-800">
+    <!-- Main Application Wrapper -->
     <div class="flex h-screen overflow-hidden">
 
-        <!-- Sidebar Section with Sky Blue Theme -->
-        <aside class="w-64 bg-sky-100 text-slate-100 flex flex-col shadow-xl z-25">
+        <!-- Sidebar Section with Sky Blue Theme (Fixed Width on Left) -->
+        <aside class="w-64 bg-sky-100 text-slate-100 flex flex-col shadow-xl z-30">
 
             <!-- Brand Header with Drop Animation -->
             <div class="h-16 flex items-center justify-center px-6 bg-sky-300 border-b border-sky-500/30 overflow-hidden">
@@ -61,7 +62,6 @@
                     display: inline-block;
                     opacity: 0;
                     animation: dropLoop 6s infinite;
-                    /* Calculate delay based on index variable --i, adding extra gap between letters */
                     animation-delay: calc(var(--i) * 0.15s);
                 }
             </style>
@@ -77,16 +77,13 @@
                     Dashboard
                 </a>
 
-
                 <!-- Products / Inventory Link -->
                 <a href="{{ route('products.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition duration-150 font-medium text-sm hover:bg-sky-200 hover:text-black {{ request()->routeIs('products.*') ? 'bg-sky-300 text-black shadow-sm' : 'text-black' }}">
                     <svg class="w-5 h-5 text-black" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 11H5m14 0a2 2 0 012 2v6a2 2 0 01-2 2H5a2 2 0 01-2-2v-6a2 2 0 012-2m14 0V9a2 2 0 00-2-2M5 11V9a2 2 0 012-2m0 0V5a2 2 0 012-2h6a2 2 0 012 2v2M7 7h10" />
                     </svg>
-                    Products (Inventory)
+                    Inventory Management
                 </a>
-
-
 
                 <!-- Users Management Link -->
                 <a href="{{ route('users.index') }}" class="flex items-center gap-3 px-4 py-3 rounded-xl transition duration-150 font-medium text-sm hover:bg-sky-200 hover:text-black {{ request()->routeIs('users.*') ? 'bg-sky-300 text-black shadow-sm' : 'text-black' }}">
@@ -109,7 +106,7 @@
             <div class="p-4 bg-sky-300 border-t border-sky-500/30">
                 <form action="/logout" method="POST">
                     @csrf
-                    <button type="submit" class="w-full flex items-center justify-center gap-2 bg-red-700 hover:bg-red text-black py-2.5 px-4 rounded-xl text-sm font-semibold transition duration-150 shadow-sm">
+                    <button type="submit" class="w-full flex items-center justify-center gap-2 bg-red-700 hover:bg-red-800 text-white py-2.5 px-4 rounded-xl text-sm font-semibold transition duration-150 shadow-sm">
                         <svg class="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                             <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M17 16l4-4m0 0l-4-4m4 4H7m6 4v1a3 3 0 01-3 3H6a3 3 0 01-3-3V7a3 3 0 013-3h4a3 3 0 013 3v1" />
                         </svg>
@@ -119,23 +116,41 @@
             </div>
         </aside>
 
-        <div class="flex-1 flex flex-col overflow-y-auto">
+        <!-- Right Main Container -->
+        <div class="flex-1 flex flex-col h-screen overflow-hidden">
 
-            <header class="bg-sky-50 shadow-sm h-16 flex items-center justify-between px-8 border-b border-sky-200 z-10">
-                <h2 class="text-lg font-bold text-slate-800 tracking-tight">Admin Panel</h2>
+            <!-- Sticky Full-Width Header Section spanning across the top -->
+            <header class="bg-sky-50 shadow-sm h-16 flex items-center justify-between px-8 border-b border-sky-200 sticky top-0 z-20 w-full">
+                <h2 class="text-lg font-bold text-slate-800 tracking-tight">
+                    @if(request()->is('dashboard'))
+                    Dashboard
+                    @elseif(request()->routeIs('products.*'))
+                    Inventory Management
+                    @elseif(request()->routeIs('users.*'))
+                    Users Management
+                    @elseif(request()->routeIs('customers.*'))
+                    Customers
+                    @else
+                    Admin Panel
+                    @endif
+                </h2>
 
                 <div class="flex items-center gap-3">
                     <span class="text-sm font-semibold text-sky-900 bg-sky-200/60 px-3.5 py-1.5 rounded-full border border-sky-300">Welcome, Admin</span>
                 </div>
             </header>
 
-            <main class="p-8 flex-1">
-                @yield('content')
-            </main>
+            <!-- Scrollable Content Area and Footer -->
+            <div class="flex-1 overflow-y-auto flex flex-col">
+                <main class="p-8 flex-1">
+                    @yield('content')
+                </main>
 
-            <footer class="bg-white border-t border-slate-200 py-4 px-8 text-center text-xs text-slate-500">
-                &copy; 2026 Invora POS & Inventory System. All rights reserved.
-            </footer>
+                <!-- Footer Section -->
+                <footer class="bg-white border-t border-slate-200 py-4 px-8 text-center text-xs text-slate-500 mt-auto">
+                    &copy; 2026 Invora POS & Inventory System. All rights reserved.
+                </footer>
+            </div>
         </div>
 
     </div>
