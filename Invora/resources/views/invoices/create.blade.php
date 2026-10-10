@@ -9,7 +9,7 @@
         <div class="flex items-center justify-between pb-6 border-b border-border">
             <div>
                 <h2 class="text-xl font-black text-active">New Billing Invoice</h2>
-                <p class="text-xs text-muted mt-0.5">Select customer and items. Inventory stock will automatically adjust.</p>
+                <p class="text-xs text-muted mt-0.5">Select customer and items. Inventory stock will automatically adjust upon submission.</p>
             </div>
             <a href="{{ route('invoices.index') }}" class="bg-canvas hover:bg-border text-active px-4 py-2 rounded-2xl font-bold text-xs border border-border shadow-inner transition">
                 Back to List
@@ -36,19 +36,26 @@
                 </select>
             </div>
 
-            <!-- Single Product Row (Simplified to avoid loop errors) -->
+            <!-- Multiple Product Selection Container -->
             <div class="space-y-3">
-                <label class="block text-xs font-bold text-muted uppercase tracking-wider">Select Product & Quantity</label>
+                <label class="block text-xs font-bold text-muted uppercase tracking-wider">Select Products & Quantity</label>
 
-                <div class="flex items-center gap-3 bg-canvas p-4 rounded-2xl border border-border shadow-inner">
-                    <select name="products[0][id]" required class="flex-1 rounded-xl border border-border bg-subtle px-3 py-2 text-sm font-semibold text-active">
-                        <option value="">-- Select Product --</option>
-                        @foreach($products as $product)
-                        <option value="{{ $product->id }}">{{ $product->name }} (Stock: {{ $product->quantity }} | Rs. {{ $product->price }})</option>
-                        @endforeach
-                    </select>
-                    <input type="number" name="products[0][quantity]" placeholder="Qty" min="1" value="1" required class="w-24 rounded-xl border border-border bg-subtle px-3 py-2 text-sm font-semibold text-active">
+                <div id="product-list" class="space-y-3">
+                    <div class="product-item flex items-center gap-3 bg-canvas p-4 rounded-2xl border border-border shadow-inner">
+                        <select name="products[0][id]" required class="flex-1 rounded-xl border border-border bg-subtle px-3 py-2 text-sm font-semibold text-active">
+                            <option value="">-- Select Product --</option>
+                            @foreach($products as $product)
+                            <option value="{{ $product->id }}">{{ $product->name }} (Stock: {{ $product->quantity }} | Rs. {{ $product->price }})</option>
+                            @endforeach
+                        </select>
+                        <input type="number" name="products[0][quantity]" placeholder="Qty" min="1" value="1" required class="w-24 rounded-xl border border-border bg-subtle px-3 py-2 text-sm font-semibold text-active">
+                        <button type="button" onclick="removeProductRow(this)" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-950 text-white rounded-xl text-xs font-bold transition">✕</button>
+                    </div>
                 </div>
+
+                <button type="button" onclick="addProductRow()" class="mt-2 px-4 py-2.5 bg-canvas hover:bg-border text-active border border-border rounded-xl text-xs font-bold shadow-inner transition flex items-center gap-2">
+                    <span>+</span> Add Another Product
+                </button>
             </div>
 
             <!-- Actions -->
@@ -64,4 +71,45 @@
     </div>
 
 </div>
+
+<!-- Template for Dynamic Rows -->
+<template id="product-row-template">
+    <div class="product-item flex items-center gap-3 bg-canvas p-4 rounded-2xl border border-border shadow-inner">
+        <select name="products[INDEX][id]" required class="flex-1 rounded-xl border border-border bg-subtle px-3 py-2 text-sm font-semibold text-active">
+            <option value="">-- Select Product --</option>
+            @foreach($products as $product)
+            <option value="{{ $product->id }}">{{ $product->name }} (Stock: {{ $product->quantity }} | Rs. {{ $product->price }})</option>
+            @endforeach
+        </select>
+        <input type="number" name="products[INDEX][quantity]" placeholder="Qty" min="1" value="1" required class="w-24 rounded-xl border border-border bg-subtle px-3 py-2 text-sm font-semibold text-active">
+        <button type="button" onclick="removeProductRow(this)" class="px-3.5 py-2 bg-slate-800 hover:bg-slate-950 text-white rounded-xl text-xs font-bold transition">✕</button>
+    </div>
+</template>
+
+<script>
+    let itemIndex = 1;
+
+    function addProductRow() {
+        const container = document.getElementById('product-list');
+        const template = document.getElementById('product-row-template').innerHTML;
+
+        // Replace INDEX with current counter
+        const newRowHtml = template.replace(/INDEX/g, itemIndex);
+
+        const tempDiv = document.createElement('div');
+        tempDiv.innerHTML = newRowHtml;
+
+        container.appendChild(tempDiv.firstElementChild);
+        itemIndex++;
+    }
+
+    function removeProductRow(button) {
+        const rows = document.querySelectorAll('.product-item');
+        if (rows.length > 1) {
+            button.closest('.product-item').remove();
+        } else {
+            alert('අවම වශයෙන් එක් ප්‍රඩක්ට් එකක්වත් තෝරාගත යුතුය.');
+        }
+    }
+</script>
 @endsection
