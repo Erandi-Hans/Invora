@@ -105,25 +105,28 @@ class InvoiceController extends Controller
     /**
      * Remove invoice and restore stock back.
      */
-    public function destroy($id)
+
+
+    public function destroy(Request $request, $id)
     {
-        DB::transaction(function () use ($id) {
+        DB::transaction(function () use ($request, $id) {
             $invoice = Invoice::with('items')->findOrFail($id);
 
-            // Restore product stock quantity
-            foreach ($invoice->items as $item) {
-                $product = Product::find($item->product_id);
-                if ($product) {
-                    $product->increment('quantity', $item->quantity);
+            // Agar user ne Restock choose kiya hai
+            if ($request->has('restock') && $request->restock == '1') {
+                foreach ($invoice->items as $item) {
+                    $product = Product::find($item->product_id);
+                    if ($product) {
+                        $product->increment('quantity', $item->quantity);
+                    }
                 }
             }
 
-            // Delete invoice and items
             $invoice->items()->delete();
             $invoice->delete();
         });
 
-        return redirect()->route('invoices.index')->with('success', 'Invoice deleted and stock restored successfully!');
+        return redirect()->route('invoices.index')->with('success', 'Invoice deleted successfully!');
     }
     /**
      * Download Invoice as HTML-based PDF stream/download.
