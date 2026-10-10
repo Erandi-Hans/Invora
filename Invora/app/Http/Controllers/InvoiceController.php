@@ -104,11 +104,12 @@ class InvoiceController extends Controller
     /**
      * Remove invoice and restore stock back.
      */
-    public function destroy(Invoice $invoice)
+    public function destroy($id)
     {
-        DB::beginTransaction();
-        try {
-            // Restore product quantities
+        DB::transaction(function () use ($id) {
+            $invoice = Invoice::with('items')->findOrFail($id);
+
+            // Restore product stock quantity
             foreach ($invoice->items as $item) {
                 $product = Product::find($item->product_id);
                 if ($product) {
@@ -116,13 +117,26 @@ class InvoiceController extends Controller
                 }
             }
 
+            // Delete invoice and items
+            $invoice->items()->delete();
             $invoice->delete();
-            DB::commit();
+        });
 
-            return redirect()->route('invoices.index')->with('success', 'Invoice deleted and stock restored.');
-        } catch (\Exception $e) {
-            DB::rollBack();
-            return back()->withErrors('Error deleting invoice.');
-        }
+        return redirect()->route('invoices.index')->with('success', 'Invoice deleted and stock restored successfully!');
+    }
+    /**
+     * Download Invoice as HTML-based PDF stream/download.
+     */
+    public function downloadPdf($id)
+    {
+        $invoice = Invoice::with(['customer', 'items.product'])->findOrFail($id);
+
+        $html = view('invoices.show', compact('invoice'))->render();
+
+        // Print dialog auto-trigger and clean dynamic download title
+        $html .= '<script>window.onload = function() { window.print(); };</script>';
+
+        return response($html)
+            ->header('Content-Type', 'text/html');
     }
 }
