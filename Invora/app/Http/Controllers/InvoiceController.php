@@ -8,6 +8,7 @@ use App\Models\Customer;
 use App\Models\Product;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\DB;
+use Barryvdh\DomPDF\Facade\Pdf;
 
 class InvoiceController extends Controller
 {
@@ -131,12 +132,8 @@ class InvoiceController extends Controller
     {
         $invoice = Invoice::with(['customer', 'items.product'])->findOrFail($id);
 
-        $html = view('invoices.show', compact('invoice'))->render();
+        $pdf = Pdf::loadView('invoices.pdf', compact('invoice'));
 
-        // Print dialog auto-trigger and clean dynamic download title
-        $html .= '<script>window.onload = function() { window.print(); };</script>';
-
-        return response($html)
-            ->header('Content-Type', 'text/html');
+        return $pdf->download("Invoice-{$invoice->invoice_number}.pdf");
     }
 }

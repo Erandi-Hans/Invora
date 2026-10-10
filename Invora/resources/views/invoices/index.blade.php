@@ -41,14 +41,17 @@
                     <td class="py-4 px-6">{{ $invoice->customer->name ?? 'N/A' }}</td>
                     <td class="py-4 px-6 font-extrabold text-slate-900">Rs. {{ number_format($invoice->total_amount, 2) }}</td>
                     <td class="py-4 px-6 text-muted">{{ $invoice->created_at->format('Y-m-d h:i A') }}</td>
-                    <td class="py-4 px-6 text-right space-x-2">
+                    <td class="py-4 px-6 text-right space-x-1.5">
                         <a href="{{ route('invoices.show', $invoice->id) }}" target="_blank" class="px-3 py-1.5 bg-canvas hover:bg-border text-active rounded-xl border border-border text-xs font-bold transition">
                             View / Print
                         </a>
-                        <button type="button" onclick="openDeleteModal('{{ route('invoices.destroy', $invoice->id) }}', '{{ $invoice->invoice_number }}')" class="px-3 py-1.5 bg-slate-900 hover:bg-slate-950 text-white rounded-xl text-xs font-bold transition shadow-sm">
+                        <a href="{{ route('invoices.download', $invoice->id) }}" target="_blank" class="px-3 py-1.5 bg-slate-800 hover:bg-slate-900 text-white rounded-xl text-xs font-bold transition shadow-sm">
+                            Download PDF
+                        </a>
+                        <a href="{{ route('invoices.destroy', $invoice->id) }}', '{{ $invoice->invoice_number }}')"
+                            class="px-3 py-1.5 bg-slate-950 hover:bg-black text-white rounded-xl text-xs font-bold transition shadow-sm">
                             Delete
-                        </button>
-                    </td>
+                        </a>
                 </tr>
                 @empty
                 <tr>
@@ -61,7 +64,7 @@
 
 </div>
 
-<!-- Professional Backdrop Blurred Modal for Delete Confirmation -->
+<!-- Delete Confirmation Modal -->
 <div id="deleteModal" class="fixed inset-0 bg-slate-950/60 backdrop-blur-sm hidden items-center justify-center z-50 p-4 transition-all">
     <div class="bg-subtle border border-border rounded-3xl p-6 max-w-md w-full shadow-2xl space-y-5">
         <div class="space-y-2">
