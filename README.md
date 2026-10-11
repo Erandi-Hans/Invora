@@ -79,7 +79,7 @@ Follow these steps to set up the project locally on your machine:
 
 ### 📊 Real-time Dashboard
 
-![Dashboard Screenshot](./public/Screenshots/dashboard.png)
+![Dashboard Screenshot](Invora/public/Screenshots/dashboard.png)
 
 *Real-time analytics overview displaying products, customers, and active staff metrics with proportional distribution charts.*
 
@@ -87,7 +87,7 @@ Follow these steps to set up the project locally on your machine:
 
 ### 📦 Inventory & Stock Management
 
-![Inventory Screenshot](./public/Screenshots/inventory.png)
+![Inventory Screenshot](Invora/public/Screenshots/inventory.png)
 
 *Complete product catalog view with real-time quantity monitoring, pricing, and fast stock updates.*
 
@@ -95,15 +95,22 @@ Follow these steps to set up the project locally on your machine:
 
 ### 🧾 Invoice Management & Smart Actions
 
-![Invoices Screenshot](./public/Screenshots/invoices.png)
+![Invoices Screenshot](Invora/public/Screenshots/invoices.png)
 
 *Clean billing interface with quick PDF download and 3-option smart deletion modal (Cancel, Delete Only, Restock & Delete).*
 
 ---
 
+### 📄 Professional Invoice  View
+
+![Invoice View Screenshot](Invora/public/Screenshots/invoice-view.png)
+
+*Isolated, print-ready PDF invoice format generated using DomPDF.*
+
+---
 ### 📄 Professional Invoice PDF View
 
-![Invoice View Screenshot](./public/Screenshots/invoice-view.png)
+![Invoice View Screenshot](public/Screenshots/invoice-view-pdf.png)
 
 *Isolated, print-ready PDF invoice format generated using DomPDF.*
 
