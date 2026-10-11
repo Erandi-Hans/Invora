@@ -76,8 +76,36 @@ Follow these steps to set up the project locally on your machine:
 ---
 
 ## 📸 Screenshots & Overview
-Dashboard: Real-time analytics overview displaying products, customers, and active staff metrics with proportional distribution charts.
-Invoices: Clean billing interface with quick PDF download and 3-option smart deletion (Cancel, Delete Only, Restock & Delete).
+
+### 📊 Real-time Dashboard
+
+![Dashboard Screenshot](./public/Screenshots/dashboard.png)
+
+*Real-time analytics overview displaying products, customers, and active staff metrics with proportional distribution charts.*
+
+---
+
+### 📦 Inventory & Stock Management
+
+![Inventory Screenshot](./public/Screenshots/inventory.png)
+
+*Complete product catalog view with real-time quantity monitoring, pricing, and fast stock updates.*
+
+---
+
+### 🧾 Invoice Management & Smart Actions
+
+![Invoices Screenshot](./public/Screenshots/invoices.png)
+
+*Clean billing interface with quick PDF download and 3-option smart deletion modal (Cancel, Delete Only, Restock & Delete).*
+
+---
+
+### 📄 Professional Invoice PDF View
+
+![Invoice View Screenshot](./public/Screenshots/invoice-view.png)
+
+*Isolated, print-ready PDF invoice format generated using DomPDF.*
 
 ---
 ## 🛡️ License
