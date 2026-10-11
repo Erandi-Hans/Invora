@@ -108,9 +108,10 @@ Follow these steps to set up the project locally on your machine:
 *Isolated, print-ready PDF invoice format generated using DomPDF.*
 
 ---
-### 📄 Professional Invoice PDF View
 
-![Invoice View Screenshot](public/Screenshots/invoice-view-pdf.png)
+### 📄 Professional Invoice Printable Bill View
+
+![Invoice View Screenshot](Invora/public/Screenshots/invoice-view-pdf.png)
 
 *Isolated, print-ready PDF invoice format generated using DomPDF.*
 
