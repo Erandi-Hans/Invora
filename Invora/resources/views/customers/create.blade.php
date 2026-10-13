@@ -24,7 +24,7 @@
             <!-- Name Field -->
             <div class="space-y-1.5">
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Customer Name</label>
-                <input type="text" name="name" value="{{ old('name') }}" placeholder="e.g. Kamal Perera" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+                <input type="text" name="name" pattern="[A-Za-z\s\.\-]+" title="Please enter letters and spaces only" value="{{ old('name') }}" placeholder="e.g. Kamal Perera" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
                 @error('name')
                 <span class="text-xs text-rose-600 font-semibold">{{ $message }}</span>
                 @enderror
@@ -33,7 +33,13 @@
             <!-- Email Field -->
             <div class="space-y-1.5">
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Email Address (Optional)</label>
-                <input type="email" name="email" value="{{ old('email') }}" placeholder="e.g. kamal@example.com" class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+                <input type="email"
+                    name="email"
+                    value="{{ old('email') }}"
+                    placeholder="e.g. kamal@example.com"
+                    pattern="[a-z0-9._%+\-]+@[a-z0-9.\-]+\.[a-z]{2,}$"
+                    title="Please enter a valid email address (e.g. name@domain.com)"
+                    class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
                 @error('email')
                 <span class="text-xs text-rose-600 font-semibold">{{ $message }}</span>
                 @enderror
@@ -42,7 +48,7 @@
             <!-- Phone Field -->
             <div class="space-y-1.5">
                 <label class="block text-xs font-bold text-slate-700 uppercase tracking-wider">Phone Number</label>
-                <input type="text" name="phone" value="{{ old('phone') }}" placeholder="e.g. 0771234567" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
+                <input type="text" name="phone" value="{{ old('phone') }}" type="tel" pattern="[0-9]{10}" maxlength="10" title="Please enter a valid 10-digit mobile number" placeholder="e.g. 0771234567" required class="w-full rounded-xl border border-slate-200 px-4 py-2.5 text-sm focus:outline-none focus:border-sky-500 focus:ring-1 focus:ring-sky-500">
                 @error('phone')
                 <span class="text-xs text-rose-600 font-semibold">{{ $message }}</span>
                 @enderror

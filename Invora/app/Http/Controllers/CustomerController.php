@@ -32,10 +32,23 @@ class CustomerController extends Controller
     {
         // Validate incoming request data
         $request->validate([
-            'name' => 'required|string|max:255',
-            'email' => 'nullable|string|email|max:255|unique:customers',
-            'phone' => 'required|string|max:20',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[a-zA-Z\s\.\-]+$/' // Accepts only letters, spaces, dots, and hyphens (No numbers)
+            ],
+            'email' => 'nullable|string|email|max:255|unique:customers,email',
+            'phone' => [
+                'required',
+                'regex:/^[0-9]+$/', // Accepts digits only (No letters/symbols)
+                'digits:10',        // Validates exact 10 digits mobile number
+            ],
             'address' => 'nullable|string|max:500',
+        ], [
+            'name.regex' => 'The customer name must contain only letters and spaces.',
+            'phone.regex' => 'The mobile number must contain only digits.',
+            'phone.digits' => 'The mobile number must be exactly 10 digits.',
         ]);
 
         // Create new customer record
@@ -67,10 +80,23 @@ class CustomerController extends Controller
     {
         // Validate incoming update data
         $request->validate([
-            'name' => 'required|string|max:255',
+            'name' => [
+                'required',
+                'string',
+                'max:255',
+                'regex:/^[a-zA-Z\s\.\-]+$/'
+            ],
             'email' => 'nullable|string|email|max:255|unique:customers,email,' . $customer->id,
-            'phone' => 'required|string|max:20',
+            'phone' => [
+                'required',
+                'regex:/^[0-9]+$/',
+                'digits:10',
+            ],
             'address' => 'nullable|string|max:500',
+        ], [
+            'name.regex' => 'The customer name must contain only letters and spaces.',
+            'phone.regex' => 'The mobile number must contain only digits.',
+            'phone.digits' => 'The mobile number must be exactly 10 digits.',
         ]);
 
         // Update customer details
