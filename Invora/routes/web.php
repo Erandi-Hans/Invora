@@ -46,7 +46,8 @@ Route::resource('invoices', InvoiceController::class)->middleware(['auth']);
 Route::get('/invoices/{id}/download', [InvoiceController::class, 'downloadPdf'])->name('invoices.download');
 Route::get('/invoices/{id}/download', [InvoiceController::class, 'downloadPdf'])->name('invoices.download');
 Route::get('/invoices/{id}/download', [InvoiceController::class, 'downloadPdf'])->name('invoices.download');
-// Welcome / Root Route
+
+// Login page  / Root Route
 Route::get('/', function () {
-    return view('welcome');
+    return view('auth.login');
 });
