@@ -25,11 +25,18 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'code' => 'required|string|unique:products',
-            'cost' => 'required|numeric',
-            'price' => 'required|numeric',
-            'quantity' => 'required|integer',
-            'description' => 'nullable|string',
+            'code' => 'required|string|max:50|regex:/^[A-Za-z0-9\-\_]+$/|unique:products,code',
+            'cost' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0|gte:cost',
+            'quantity' => 'required|integer|min:0',
+            'description' => 'nullable|string|max:1000',
+        ], [
+            'code.regex' => 'Product code must only contain letters, numbers, hyphens, and underscores.',
+            'cost.min' => 'Cost cannot be a negative value.',
+            'price.min' => 'Price cannot be a negative value.',
+            'price.gte' => 'Selling price must be greater than or equal to the cost price.',
+            'quantity.min' => 'Quantity cannot be a negative number.',
+            'quantity.integer' => 'Quantity must be a whole number.',
         ]);
 
         Product::create($request->all());
@@ -48,22 +55,31 @@ class ProductController extends Controller
     {
         $request->validate([
             'name' => 'required|string|max:255',
-            'code' => 'required|string|unique:products,code,' . $product->id,
-            'cost' => 'required|numeric',
-            'price' => 'required|numeric',
-            'quantity' => 'required|integer',
-            'description' => 'nullable|string',
+            'code' => 'required|string|max:50|regex:/^[A-Za-z0-9\-\_]+$/|unique:products,code,' . $product->id,
+            'cost' => 'required|numeric|min:0',
+            'price' => 'required|numeric|min:0|gte:cost',
+            'quantity' => 'required|integer|min:0',
+            'description' => 'nullable|string|max:1000',
+        ], [
+            'code.regex' => 'Product code must only contain letters, numbers, hyphens, and underscores.',
+            'cost.min' => 'Cost cannot be a negative value.',
+            'price.min' => 'Price cannot be a negative value.',
+            'price.gte' => 'Selling price must be greater than or equal to the cost price.',
+            'quantity.min' => 'Quantity cannot be a negative number.',
+            'quantity.integer' => 'Quantity must be a whole number.',
         ]);
 
         $product->update($request->all());
 
         return redirect()->route('products.index')->with('success', 'Product updated successfully!');
     }
-    //show more details about the product
+
+    // show more details about the product
     public function show(Product $product)
     {
         return view('products.show', compact('product'));
     }
+
     // Remove the specified product from storage
     public function destroy(Product $product)
     {

@@ -46,17 +46,23 @@
             <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
                 <div>
                     <label class="block text-slate-700 text-xs font-bold uppercase tracking-wider mb-2">Cost Price (Rs.)</label>
-                    <input type="number" step="0.01" name="cost" value="{{ old('cost', $product->cost) }}" required class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white text-sm font-semibold text-slate-900 transition">
+                    <input type="number" step="0.01" name="cost" min="0" value="{{ old('cost') }}" required placeholder="0.00" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white text-sm font-semibold text-slate-900 transition">
+                    @error('cost')
+                    <span class="text-xs text-rose-600 font-semibold mt-1 block">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div>
                     <label class="block text-slate-700 text-xs font-bold uppercase tracking-wider mb-2">Selling Price (Rs.)</label>
-                    <input type="number" step="0.01" name="price" value="{{ old('price', $product->price) }}" required class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white text-sm font-semibold text-slate-900 transition">
+                    <input type="number" step="0.01" name="price" min="0" value="{{ old('price') }}" required placeholder="0.00" class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white text-sm font-semibold text-slate-900 transition">
+                    @error('price')
+                    <span class="text-xs text-rose-600 font-semibold mt-1 block">{{ $message }}</span>
+                    @enderror
                 </div>
 
                 <div>
                     <label class="block text-slate-700 text-xs font-bold uppercase tracking-wider mb-2">Stock Quantity</label>
-                    <input type="number" name="quantity" value="{{ old('quantity', $product->quantity) }}" required class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white text-sm font-semibold text-slate-900 transition">
+                    <input type="number" min="0" name="quantity" value="{{ old('quantity', $product->quantity) }}" required class="w-full px-4 py-3 bg-slate-50 border border-slate-300 rounded-xl focus:outline-none focus:ring-2 focus:ring-slate-900 focus:bg-white text-sm font-semibold text-slate-900 transition">
                 </div>
             </div>
 
