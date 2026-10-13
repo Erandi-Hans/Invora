@@ -6,15 +6,6 @@ use Illuminate\Support\Facades\Schema;
 
 return new class extends Migration
 {
-
-
-    protected $fillable = [
-        'invoice_id',
-        'product_id',
-        'quantity',
-        'price',
-        'subtotal'
-    ];
     public function up(): void
     {
         Schema::create('invoice_items', function (Blueprint $table) {
@@ -23,13 +14,11 @@ return new class extends Migration
             $table->foreignId('product_id')->constrained()->onDelete('cascade');
             $table->integer('quantity');
             $table->decimal('price', 10, 2);
+            $table->decimal('subtotal', 10, 2);
             $table->timestamps();
         });
     }
 
-    /**
-     * Reverse the migrations.
-     */
     public function down(): void
     {
         Schema::dropIfExists('invoice_items');
